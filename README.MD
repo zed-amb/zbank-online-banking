@@ -1,1 +1,1 @@
-This document consists of Banking application end-to-end
+This document consists of Banking application end-to-end. All the Architecture (high level) is also attached.
