@@ -1,4 +1,4 @@
-package com.zbank.application.utils;
+package com.zbank.application.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import software.amazon.awssdk.services.eventbridge.EventBridgeClient;
