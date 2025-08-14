@@ -1,8 +1,11 @@
 package com.zbank.stats.controller;
 
+import com.zbank.stats.model.ApplicationStats;
 import com.zbank.stats.model.ApplicationSubmittedEvent;
 import com.zbank.stats.service.StatsService;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/events")
@@ -19,4 +22,5 @@ public class EventReceiverController {
         statsService.handle(event);
         return "Event processed";
     }
+
 }

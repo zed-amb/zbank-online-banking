@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ApplicationService {
@@ -44,4 +46,30 @@ public class ApplicationService {
 
         return saved;
     }
+
+    // service/ApplicationService.java
+    public List<CreditCardApplication> findAll() {
+        return repository.findAll();
+    }
+
+    public CreditCardApplication findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Application " + id + " not found"));
+    }
+
+    public CreditCardApplication update(Long id, ApplicationRequest req) {
+        var app = findById(id);
+        app.setFullName(req.fullName);
+        app.setSsn(req.ssn);
+        app.setDob(LocalDate.parse(req.dob));
+        app.setAddress(req.address);
+        app.setIncome(req.income);
+        return repository.save(app);
+    }
+
+    public void delete(Long id) {
+        if (!repository.existsById(id)) throw new NoSuchElementException("Application " + id + " not found");
+        repository.deleteById(id);
+    }
+
 }
